@@ -15,7 +15,7 @@ LrcContent parse_lrc(QString lrc_text)
         QString milliseconds = match.captured(3);
         qint64 timestamp = minutes.toInt() * 60000 + seconds.toInt() * 1000 + milliseconds.toInt();
         QString sentence = match.captured(4);
-        LyricLine* lyric_line = new LyricLine(timestamp, sentence);
+        LyricLine lyric_line { timestamp, sentence };
         lrc_content.lyricLines.append(lyric_line);
     }
 
@@ -24,8 +24,5 @@ LrcContent parse_lrc(QString lrc_text)
 
 void LrcContent::clear()
 {
-    for (LyricLine* line : lyricLines) {
-        delete line;
-    }
     lyricLines.clear();
 }

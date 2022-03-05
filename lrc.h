@@ -5,41 +5,21 @@
 #include <QQmlEngine>
 #include <QRegularExpression>
 
-class LyricLine : public QObject {
-    Q_OBJECT
-    Q_PROPERTY(qint64 timestamp READ timestamp CONSTANT)
-    Q_PROPERTY(QString sentence READ sentence CONSTANT)
+// A struct store information of a lyric line
+struct LyricLine {
+    // Q_GADGET allows direct access of fields (sentence and timestamp) from QML
+    Q_GADGET
+    Q_PROPERTY(QString sentence MEMBER sentence)
+    Q_PROPERTY(qint64 timestamp MEMBER timestamp)
 
 public:
-    explicit LyricLine(qint64 timestamp, QString sentence)
-        : QObject(nullptr)
-    {
-        // QML Javascript might take over the ownership and garbage collect
-        // this object since it doesn't have parent.
-        // Here forbid it.
-        QQmlEngine::setObjectOwnership(this, QQmlEngine::CppOwnership);
-        m_timestamp = timestamp;
-        m_sentence = sentence;
-    }
-
-    qint64 timestamp()
-    {
-        return m_timestamp;
-    }
-
-    QString sentence()
-    {
-        return m_sentence;
-    }
-
-public:
-    qint64 m_timestamp;
-    QString m_sentence;
+    qint64 timestamp;
+    QString sentence;
 };
 
 // A struct records all required information in the lrc file
 struct LrcContent {
-    QList<LyricLine*> lyricLines;
+    QList<LyricLine> lyricLines;
     void clear();
 };
 

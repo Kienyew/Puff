@@ -37,12 +37,12 @@ QVariant LyricsModel::data(const QModelIndex& index, int role) const
         return QVariant();
     }
 
-    LyricLine* lyricLine = lrc_content.lyricLines.at(row);
+    LyricLine lyricLine = lrc_content.lyricLines.at(row);
     switch (role) {
     case SentenceRole:
-        return lyricLine->sentence();
+        return lyricLine.sentence;
     case TimestampRole:
-        return lyricLine->timestamp();
+        return lyricLine.timestamp;
     default:
         return QVariant();
     }

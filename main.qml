@@ -3,6 +3,7 @@ import QtQuick.Dialogs
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtMultimedia
+import QtQuick.LocalStorage
 
 import kienyew.github
 
@@ -20,12 +21,20 @@ Window {
     }
 
 
+    property bool simplify_view: false;
     id: root
     title: "Puff"
     color: "#88DDDDDD" // ARGB
     visible: true
     width: 500
     height: 888
+
+    Shortcut {
+        sequence: "h"
+        onActivated: {
+            simplify_view = !simplify_view;
+        }
+    }
 
     ColumnLayout {
         width: root.width
@@ -45,6 +54,7 @@ Window {
             Layout.fillWidth: true
             Layout.leftMargin: 20
             Layout.rightMargin: 20
+            visible: !simplify_view
             Slider {
                 width: parent.width - timeLabel.width
                 id: slider
@@ -73,6 +83,7 @@ Window {
             Layout.alignment: Qt.AlignHCenter
             Layout.bottomMargin: 20
             spacing: 10
+            visible: !simplify_view
 
 
             // Select LRC file button
@@ -145,5 +156,7 @@ Window {
     Component.onCompleted: {
         player.play();
     }
+
+
 }
 

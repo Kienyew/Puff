@@ -8,7 +8,6 @@
 #include <QQmlEngine>
 #include <QQmlListProperty>
 
-//
 class LyricsModel : public QAbstractListModel {
     Q_OBJECT
     Q_PROPERTY(QUrl lyricSource READ lyricSource WRITE setLyricSource NOTIFY lyricSourceChanged)
@@ -17,18 +16,17 @@ public:
         SentenceRole = Qt::UserRole + 1,
         TimestampRole
     };
+    LyricsModel(QObject* parent = nullptr);
 
     // Allows QML get the lyric line by index
-    Q_INVOKABLE LyricLine* getLyricLine(int index)
+    Q_INVOKABLE LyricLine getLyricLine(int index)
     {
         if (index >= 0 && index < lrc_content.lyricLines.count()) {
             return lrc_content.lyricLines[index];
         } else {
-            return nullptr;
+            return LyricLine();
         }
     }
-
-    LyricsModel(QObject* parent = nullptr);
 
     QUrl lyricSource()
     {
