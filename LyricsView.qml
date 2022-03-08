@@ -21,7 +21,7 @@ ListView {
 
     LyricsModel {
         id: model
-        lyricSource: "file:///home/kienyew/Audios/Playlist/僕らのてえには何もないけど.lrc"
+        lyricSource: config.recentLrcFile;
     }
 
     delegate: Rectangle {

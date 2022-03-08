@@ -15,6 +15,8 @@ qt_add_executable(appPuff
     lyricsmodel.cpp
     lrc.h
     lrc.cpp
+    config.h
+    config.cpp
 )
 
 qt_add_qml_module(appPuff

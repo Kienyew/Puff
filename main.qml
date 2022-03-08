@@ -96,6 +96,7 @@ Window {
                     nameFilters: ["LRC files (*.lrc)"]
                     onAccepted: {
                         lyricView.lrcSource = selectedFile
+                        config.recentLrcFile = selectedFile
                     }
                 }
 
@@ -125,6 +126,7 @@ Window {
                     fileMode: FileDialog.OpenFile
                     onAccepted: {
                         player.source = selectedFile
+                        config.recentAudioFile = selectedFile;
                     }
                 }
                 onClicked: {
@@ -140,7 +142,7 @@ Window {
         id: player
         audioOutput: AudioOutput {}
         loops: MediaPlayer.Infinite
-        source: "file:///home/kienyew/Audios/Playlist/僕らの手には何もないけど.mp3"
+        source: config.recentAudioFile
     }
 
     // Timer to naively scroll to current lyric line every 100 milliseconds
