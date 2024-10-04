@@ -1,7 +1,7 @@
 # Puff 泡芙
 
 滚动歌词播放器
-Musics with interactive lyrics view.
+Music player with interactive lyric view.
 
 ## Config
 see `~/.config/puff/config.json`
