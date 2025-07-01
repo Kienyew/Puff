@@ -50,7 +50,7 @@ QVariant LyricsModel::data(const QModelIndex& index, int role) const
 
 void LyricsModel::loadLyricsFile(QUrl lyricSource)
 {
-    QFile file = lyricSource.toLocalFile();
+    QFile file(lyricSource.toLocalFile());
     if (!file.exists()) {
         qWarning() << "lyric source file does not exist: " << lyricSource;
         return;
